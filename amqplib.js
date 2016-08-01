@@ -19,7 +19,7 @@ module.exports = function (options) {
 function publisher(queueName) {
     return function (message, onMessageSended) {
         initialize(queueName, function (conn, channel) {
-            channel.sendToQueue(queueName, new Buffer(JSON.stringify(message)), { persistent: model.persitent || false });
+            channel.sendToQueue(queueName, new Buffer(JSON.stringify(message)), { persistent: model.persistent || false });
             onMessageSended && onMessageSended();
         });
     };

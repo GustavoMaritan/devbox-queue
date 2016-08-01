@@ -1,13 +1,11 @@
 {
   "name": "devbox-queue",
   "version": "1.0.5",
-  "description": "Gerenciar queue.",
+  "description": "Gerenciar queue rabbitmq.",
   "main": "amqplib.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
-    "queue"
+    "queue",
+    "rabbitmq"
   ],
   "author": "Gustavo Maritan <gustavomaritan@gmail.com>",
   "license": "ISC",
