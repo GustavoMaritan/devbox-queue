@@ -40,7 +40,7 @@ amqp.listener(function (message, removeFromQueue) {
 ```
 amqp = require('devbox-queue')(config);
 
-aion.publisher(objQueue, function (err, data){
+amqp.publisher(objQueue, function (err, data){
 
 });
 ```
