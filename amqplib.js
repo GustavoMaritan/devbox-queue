@@ -42,19 +42,30 @@ function listener(queueName) {
 }
 
 function initialize(queueName, callback) {
-    waterfall([
-        connectToQueue(queueName),
-        createChanell,
-        assertQueue
-    ],
-        function (err, conn, channel) {
-            if (err) {
-                model.log ? model.log(model.logCollectionName !== null ? model.logCollectionName : 'QueueConnectionError', err)
-                    : console.log('QueueConnectionError', err);
-            }
-            else
-                callback(conn, channel);
-        });
+    if (this.conn && this.channel) {
+        assertQueue(queueName, this.conn, this.channel, queueConnectionReady);
+    }
+    else {
+        waterfall([
+            connectToQueue(queueName),
+            createChanell,
+            assertQueue
+        ],
+            queueConnectionReady
+        );
+    }
+
+    function queueConnectionReady(err, conn, channel) {
+        if (err) {
+            model.log ? model.log(model.logCollectionName !== null ? model.logCollectionName : 'QueueConnectionError', err)
+                : console.log('QueueConnectionError', err);
+        }
+        else {
+            this.conn = conn;
+            this.channel = channel;
+            callback(conn, channel);
+        }
+    }
 }
 
 function connectToQueue(queueName) {
