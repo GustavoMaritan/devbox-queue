@@ -13,7 +13,7 @@ var config = {
     log: function,
     logCollectionName: 'name collection log',
     caller: 'name queue user',
-    persitent: true or false "default false"
+    persistent: true or false "default false"
 }
 ```
 
